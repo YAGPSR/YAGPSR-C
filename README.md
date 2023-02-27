@@ -40,7 +40,7 @@ If you are interested in soft GPS, I recommend looking instead at the "GNSS-SDR"
 
 ## Building
 
-Obtain the codebase from GitHub using `git clone`, or by downloading from GitHub. Note that Git LFS must be installed for the test data to be included.
+Obtain the codebase from GitHub using `git clone`, or by downloading from GitHub. Note that Git LFS must be installed for the test data to be included, as it is too large to be included without large file support.
 
 ### Linux
 
