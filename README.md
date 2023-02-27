@@ -103,7 +103,7 @@ Without multithreading (slower, only if you experience problems with pthread):
 
 ## Testing
 
-Once the code has been successfully compiled use the command
+Once the code has been successfully compiled, use the command
 
 `./run_yagpsr_test.sh`
 
