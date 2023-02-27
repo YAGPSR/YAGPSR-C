@@ -24,10 +24,10 @@ If you are interested in soft GPS, I recommend looking instead at the "GNSS-SDR"
 	- Tested on Windows 10 and 11
 	- Tested on Debian 11, running on WSL 2 on Windows 11
 
-2. C++ compiler (with pthread support
+2. C++ compiler (with pthread support)
 
 	- Tested with Microsoft Visual Studio 2017/2022 on Windows,
-	- Tested clang version 11.0.1-2 (x86_64-pc-linux-gnu) on Debian 11
+	- Tested with clang version 11.0.1-2 (x86_64-pc-linux-gnu) on Debian 11
 
 3. FFTW
 
@@ -52,49 +52,48 @@ Without multithreading (slower, only if you experience problems with pthread):
 
 ### Windows
 
-Create an empty Visual Studio Project, add all *.cpp and *.h files are source and headers respectively.
-Install and add FFTW to the project (header, library, dll).
-Build.
+	- Create an empty Visual Studio Project, add all *.cpp and *.h files are source and headers respectively.
+	- Install and add FFTW to the project (header, library, dll).
+	- Build.
 
 
 ### WSL on Windows
 
 1. Install a linux distribution on WSL (this example is for Debian)
 
-  - Ensure Virtualization support is enabled for your CPU in your BIOS (called SVM on AMD)
+	  - Ensure Virtualization support is enabled for your CPU in your BIOS (called SVM on AMD)
 
-  - Open Powershell (Run as administrator)
+	  - Open Powershell (Run as administrator)
 
-  - At the shell, install Debian
+	  - At the shell, install Debian
 
-      `wsl --install -d Debian`
+	      `wsl --install -d Debian`
 
-    - You can also install a different distrobution, but these instructions assume Debian:
-      `wsl --list --online`
+	    - You can also install a different distrobution, but these instructions assume Debian:
+	      
+	      `wsl --list --online`
 	  
-      `wsl --install -d \<Distribution Name\>`
+	      `wsl --install -d <Distribution Name>`
  
-
-  - Reboot the PC.
-    - On restart, the install will be completed and a username/password will be set - if there is an error, check that virtualization is enabled.
-
+	- Reboot the PC.
+		- On restart, the install will be completed and a username/password will be set - if there is an error, check that virtualization is enabled.
 
 2. Ensure that all the required packages for development are installed
 
-On Debian 11 (WSL):
+	On Debian 11 (WSL):
 
-`sudo apt install clang`
+	`sudo apt install clang`
 
-`sudo apt install make`
+	`sudo apt install make`
 
-`sudo apt install libfftw3-dev`
+	`sudo apt install libfftw3-dev`
 
-`sudo apt install git`
+	`sudo apt install git`
 
 
-3. Place the codebase into a directory of your choice, and from the directory containing "Makefile"
+3. Place the codebase into a directory of your choice (using `git clone` for example), and while in the directory containing "Makefile"
 
-`make`
+	`make`
 
 
 ## Testing
@@ -106,68 +105,96 @@ Once the code has been successfully compiled use the command
 which will run the code on some real GPS data.
 
 
-### How to use
+# How to use
 
-When called with no command line arguments, usage information is echoed, default values are used for values which are not specified at the command line
+When called with no command line arguments, usage information is echoed to the command line. In normal use, default values are used for values which are not specified. 
 
-Usage: ./yagpsr -f\<infilename\> -DopplerSwing \<value\> -DopplerStep \<value\> -DetectionThreshold \<value\> -CorrelationWindow \<value\> -OSR \<value\>
+The command line arguments for `yagpsr` are as follows:
 
--f\<infilename\>                  
+`yagpsr -f<infilename> -DopplerSwing <value> -DopplerStep <value> -DetectionThreshold <value> -CorrelationWindow <value> -OSR <value>`
 
-The filename of the input data stream. Note that there is NO SPACE between -f and the filename. Specifying this as stdin takes input from the console.
+**-f\<infilename\>**
 
--DopplerLow \<value\>             
+	The filename of the input data stream. 
+	Note that there is NO SPACE between -f and the filename. 
+	Specifying this as stdin takes input from the console.
 
-The beginning of the range of Doppler offset frequencies used when searching for each SV. Overwrites the DopplerLow value where placed later on the command line than DopplerSwing. Integer only, specified in Hz.
+**-DopplerLow \<value\>**
 
--DopplerHigh \<value\>            
+	The beginning of the range of Doppler offset frequencies used when searching for each SV. 
+	Overwrites the DopplerLow value where placed later on the command line than DopplerSwing.
+	Integer only, specified in Hz.
 
-The end of the range of Doppler offset frequencies used when searching for each SV. Integer only, specified in Hz.
+**-DopplerHigh \<value\>**
 
--DopplerSwing \<value\>           
+	The end of the range of Doppler offset frequencies used when searching for each SV. 
+	Integer only, specified in Hz.
 
-The the range of Doppler offset frequencies about the centre frequency (+/-DopplerSwing) used when searching for each SV. Overrides all earlier DopplerLow/DopplerHigh settings on the command line. Positive integer only, specified in Hz.
+**-DopplerSwing \<value\>**
 
--DopplerStep \<value\>            
+	The range of Doppler offset frequencies about the centre frequency (+/-DopplerSwing) used when searching for each SV. 
+	Overrides all earlier DopplerLow/DopplerHigh settings on the command line. 
+	Positive integer only, specified in Hz.
 
-The frequency spacing between consecutive Doppler offset frequencies used when searching for each SV. If not an integer divisor of (2 X DopplerSwing) then the maximum Doppler offset is reduced accordingly. Integer only, specified in Hz.
+**-DopplerStep \<value\>**
 
--DetectionThreshold \<value\>     
+	The frequency spacing between consecutive Doppler offset frequencies used when searching for each SV. 
+	If not an integer divisor of (2 X DopplerSwing) then the maximum Doppler offset is reduced accordingly. 
+	Integer only, specified in Hz.
 
-The threshold value to use in detection of SVs. Positive integer only.
+**-DetectionThreshold \<value\>**
 
--CorrelationWindow \<value\>      
+	The threshold value to use in detection of SVs. 
+	Positive integer only.
 
-The length of time over which to correlate in SV detection in ms. Positive integer only.
+**-CorrelationWindow \<value\>**
 
--CorrelationMode \<value\>      
+	The length of time over which to correlate in SV detection in ms. 
+	Positive integer only.
 
-The mode in which to operate the correlation used in the initial acquisition satellites. Valid values: MultiPhase, FFT, Full.
+**-CorrelationMode \<value\>**
 
--OSR \<value\>                    
+	The mode in which to operate the correlation used in the initial acquisition satellites. 
+	Valid values: MultiPhase, FFT, Full.
 
-The oversampling ratio at which to process data (during the tracking phase, but also used to simplify data selection during acquisition). Positive integer multiple of 4 only.
+**-OSR \<value\>**
 
--SleepTime \<value\>              
+	The oversampling ratio at which to process data (during the tracking phase, but also used to simplify data selection during acquisition). 
+	Positive integer multiple of 4 only.
 
-The length of time to wait after failing to acquire a satellite before trying again. Positive integer only, specified in ms.
+**-SleepTime \<value\>**
+
+	The length of time to wait after failing to acquire a satellite before trying again. 
+	Positive integer only, specified in ms.
 
 
+## Data Format
 
-Default parameter filename: data.dat
+The input data is binary data stored in a `.bin` file. There is also an associated `.dat` file containing information about the data in the `.bin`.
+
+Example contents of `.dat`:
+
+	4000000			% FsData, the sampling rate of the input, in Hz
+	
+	7500			% Fc, the centre frequency of the input, in Hz
+	
+	4			% The default/suggested oversampling rate at which to perform acquisition (may be overwritten at the command line)
+	
+	DT_16_BIT_COMPLEX	% Data format in the input
+
 
 
 # FAQs
 
 ### What is it and what is it not?
 
-It is a basic implementation of GPS receiver functionality, written for my own edification as a personal project over a number of weekends.It is not a complete GPS receiver and is not suitable for use.
+It is a basic implementation of GPS receiver functionality, written for my own edification as a personal project over a number of weekends. It is not a complete GPS receiver and is not suitable for general use.
 
 ### What does it do and not do?
 
 It does:
 * Read an IF signal stored as a binary stream in a file
-* Process in a near zero IF
+* Shift and process as near-zero-IF
 * Search for SVs from 1 to 31
 * Detect Doppler offsets
 * Receive data packets from each SV detected
@@ -180,6 +207,7 @@ It does:
 * Echo information to command line as it is running
 
 It does not:
+* have any a priori information about the satellites
 * use almanac/ephemeris information to intelligently look for satellites or predict Doppler before starting
 * detect phase slipping
 * give a continually updating location
