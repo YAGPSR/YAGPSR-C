@@ -34,6 +34,9 @@ If you are interested in soft GPS, I recommend looking instead at the "GNSS-SDR"
 	- Tested with FFTW v3.3.5 on Windows 
 	- Tested with FFTW v3.3.8-2 on Linux
 
+4. (When using git) Git and Git LFS
+
+	- Git LFS is required to support the large binary of test data
 
 ## Building
 
@@ -89,6 +92,8 @@ Without multithreading (slower, only if you experience problems with pthread):
 	`sudo apt install libfftw3-dev`
 
 	`sudo apt install git`
+	
+	`sudo apt install git-lfs`
 
 
 3. Place the codebase into a directory of your choice (using `git clone` for example), and while in the directory containing "Makefile"
