@@ -37,7 +37,7 @@ If you are interested in soft GPS, I recommend looking instead at the "GNSS-SDR"
 
 ## Building
 
-Obtain the codebase from GitHub using `git clone`.
+Obtain the codebase from GitHub using `git clone`, or by downloading from GitHub.
 
 ### Linux
 
