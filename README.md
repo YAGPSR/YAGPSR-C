@@ -224,5 +224,5 @@ It does not:
 ### Why did you stop working on it, when it's clearly not finished?
 
 Real life and lack of test data.
-This was a something was worked on in my spare time, and eventually real-life took over with other priorities. Also, testing GPS requires a lot of test data, and since I had no way of capturing such data to IF, this is based only on what was available online at the time it was written.
+This was a something that was worked on in my spare time and, eventually, real-life took over with other priorities. Also, testing GPS requires a lot of test data, and since I had no way of capturing such data, it was decided to put this aside. This implementation is based only on what was available online (that I was aware of) at the time it was written.
 
