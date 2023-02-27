@@ -107,7 +107,7 @@ Once the code has been successfully compiled, use the command
 
 `./run_yagpsr_test.sh`
 
-which will execute with appropriate command-line paramters on `TestGPS.bin` writing out the results in `TestGPS_Lat_Lon.kml`. File size limitations mean that this is the only binary file included, and only covers a small time window of samples.
+which will execute with appropriate command-line paramters on `TestGPS.bin` (configured as in `TestGPS.dat`) writing out the results in `TestGPS_Lat_Lon.kml`. File size limitations mean that `TestGPS.bin` is the only binary file included, and only covers a small time window of samples.
 
 
 # How to use
