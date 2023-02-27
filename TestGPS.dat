@@ -1,0 +1,4 @@
+4000000				% FsData, the sampling rate of the input, in Hz
+7500				% Fc, the centre frequency of the input, in Hz
+4					% The default/suggested oversampling rate at which to perform acquisition (may be overwritten at the command line)
+DT_16_BIT_COMPLEX	% Data format in the input
